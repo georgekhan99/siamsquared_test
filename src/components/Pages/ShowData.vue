@@ -16,7 +16,7 @@
         @click="isOptionsExpanded = !isOptionsExpanded"
         @blur="isOptionsExpanded = false"
       >
-        <span>{{ selectedOption.N_COMPANY_T }}</span>
+        <span>{{ !selectedOption.N_COMPANY_T ? selectedOption[0] : selectedOption.N_COMPANY_T }}</span>
         <svg
           fill="none"
           viewBox="0 0 24 24"
@@ -58,7 +58,7 @@
           </div>
         </div>
           <!--! END of DropDown Menu To Select Company to Show -->
-        <div v-if="selectedOption"
+        <div 
           class="info_box lg:w-[60%] bg-slate-300 mt-[25px] min-h-[400px] rounded-md border-cyan-300"
         >
           <div class="w-full text-[20px] p-3 flex-col">
@@ -79,10 +79,10 @@
               <div class="w-full flex flex-col justify-center items-center">
                     <div class="w-full flex flex-col justify-start py-3 px-3">
                         <p class="font-bold"> ข้อมูลสำคัญบริษัท </p>
-                        <p class="mt-4 font-thin text-sm"> ชื่อย่อ :  {{ this.selectedOption.N_name }}  </p>
-                        <p class="mt-4 font-thin text-sm"> ชื่อย่อไทย :  {{ this.selectedOption.N_shortname }}  </p>
-                        <p class="mt-4 font-thin text-sm"> marketcap :  {{ this.selectedOption.marketcap?.toLocaleString() ?? null }}  </p>
-                        <p class="mt-4 font-thin text-sm"> เว็บไซต์บริษัท :  {{ this.selectedOption.N_URL != '' && this.selectedOption.N_URL == null  ?  "ไม่พบข้อมูล" :this.selectedOption.N_URL }}  </p>
+                        <p class="mt-4 font-thin text-sm"> ชื่อย่อ :  {{ !this.selectedOption.N_name ? "ไม่พบข้อมูล" : this.selectedOption.N_name  }}  </p>
+                        <p class="mt-4 font-thin text-sm"> ชื่อย่อไทย :  {{ !this.selectedOption.N_shortname ? "ไม่พบข้อมูล" : this.selectedOption.N_shortname}}  </p>
+                        <p class="mt-4 font-thin text-sm"> marketcap :  {{ !this.selectedOption.marketcap ? "ไม่พบข้อมูล" : this.selectedOption.marketcap?.toLocaleString() ?? null  }}  </p>
+                        <p class="mt-4 font-thin text-sm"> เว็บไซต์บริษัท :  {{ !this.selectedOption.N_URL ? "ไม่พบข้อมูล" : this.selectedOption.N_URL  }}  </p>
                     </div>
               </div>
             </div>
@@ -103,7 +103,7 @@ export default {
   data() {
     return {
     isOptionsExpanded: false,
-      selectedOption: [],
+      selectedOption: ["--กรุณาเลือกบริษัทที่ต้องการ--"],
       language: "thai",
       isDropdownOpen: false,
       response_data: [],
