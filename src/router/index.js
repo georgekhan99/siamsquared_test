@@ -8,17 +8,26 @@ const routes = [
     {
         path: "/",
         name: 'indexPage',
-        component: () => import('../components/Pages/ShowData.vue')
+        component: () => import('../components/Pages/ShowData.vue'),
+        meta: {
+            title: "SiamSquared Technologies Test",
+          },
     },
     {
         path: '/register',
         name: 'RegisterForm',
-        component: RegisterPage
+        component: RegisterPage,
+        meta: {
+            title: "REGISTER | SiamSquared Technologies Test",
+          },
     },
     {
         path: '/confirmation',
         name: 'confirmationPage',
-        component: confirmationPage
+        component: confirmationPage,
+        meta: {
+            title: "RESULT | SiamSquared Technologies Test",
+          },
     }
 ]
 
